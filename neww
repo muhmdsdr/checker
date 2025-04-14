@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <title>بررسی آیدی اینستاگرام</title>
+</head>
+<body>
+  <h1>بررسی آیدی اینستاگرام</h1>
+  <button onclick="checkUsernames()">بررسی کن</button>
+  <ul id="results"></ul>
+
+  <script>
+    const usernames = ['sadrllq', 'sdrvvnv', 'sadr999', 'sdr998', 'sadrvvv'];
+    async function checkUsernames() {
+      const results = document.getElementById('results');
+      results.innerHTML = '';
+      for (let username of usernames) {
+        const res = await fetch(`https://www.instagram.com/${username}/`, { method: 'GET' });
+        const li = document.createElement('li');
+        li.textContent = `${username} → ${res.status === 404 ? '✅ آزاد' : '❌ گرفته شده'}`;
+        results.appendChild(li);
+      }
+    }
+  </script>
+</body>
+</html>
